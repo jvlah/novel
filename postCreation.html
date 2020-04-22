@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Novel</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+    <!-- Custom CSS -->
+    <style>
+     body {
+  background: url('srra.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+    </style>
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Novel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="simulation.html">Marketing Picker
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Post Creation
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="informationphones.html">Information About the Phones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">Back</a>
+        </li>
+       
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h1 class="mt-5">Create Your Posts</h1>
+      <p class="lead">Marketing Campaign</p>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="container">
+<div class="card-deck">
+  <div class="card">
+  
+    <div class="card-body">
+      <h5 class="card-title">Brand Content</h5>
+      <p class="card-text">You create brand when you want to reach out to the audience with your own website-content </p>
+      <p class="card-text"><small class="text-muted">Please input a topic: </small></p>
+      <select class="selectpicker" multiple data-live-search="true" id="topicBrand">
+        <option>Smartphone Market General News</option>
+        <option>Brand news for non-smartphone products</option>
+        <option>News about brand ecosystem</option>
+        <option>Important Anniversaries</option>
+        <option>Random Topics on Current Events</option>
+        <option>Environmental Topics</option>
+        <option>No Content</option>
+      </select> <br> <br>
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary" type="submit" onclick="getDataBrandContent()">Submit Post</button>
+          <button class="btn btn-danger" type="reset">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+
+    <div class="card-body">
+      <h5 class="card-title">Mobile Content</h5>
+      <p class="card-text">Please select wheather you want to promote on Different Social Media Channels</p>
+      <p class="card-text"><small class="text-muted">Please input a topic for the new post: </small></p>
+      <select class="selectpicker" multiple data-live-search="true" id="topicselector">
+        <option>General Product Features</option>
+        <option>Photography</option>
+        <option>Memory</option>
+        <option>Distinctive Design</option>
+        <option>Practical Design</option>
+        <option>Differentiation</option>
+        <option>No Content</option>
+        <option>New Model</option>
+        <option>Tehnical Support</option>
+      </select> <br> <br>
+      <p class="card-text"><small class="text-muted">Which content are you targeting? </small></p>
+      <select class="selectpicker" multiple data-live-search="true" id="contentselector">
+        <option>Facebook Content</option>
+        <option>Instagram Content</option>
+        <option>Youtube Content</option>
+      </select> <br> <br>
+      <p class="card-text"><small class="text-muted">Which Pages are you targeting? </small></p>
+      <select class="selectpicker" multiple data-live-search="true" id="pagesselector">
+        <option>Facebook</option>
+        <option>Youtube</option>
+        <option>Instagram</option>
+      </select> <br> <br>
+      <p class="card-text"><small class="text-muted">Are you targeting Google Ads? </small></p>
+      <div class="form">
+      <label class="radio-inline"><input type="radio" value="True" id="yes">Yes</label> 
+      <label class="radio-inline"><input type="radio" value="false" id="no">No</label>
+    </div> <br>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary" type="submit" onclick="getDataMobileContent()">Submit Post</button>
+        <button class="btn btn-danger" type="reset">Reset</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<br> 
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Social Media </h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Google Ads</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br> <br>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="creation.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+</body>
+</html>
