@@ -1,12 +1,11 @@
 //event listener for the get data from the api method. 
-document.getElementById('submit').addEventListener('click',postData);
+document.getElementById('submit').addEventListener('click',getDataFromApi);
 
 /**
  * Gets the data from the form and stores it in an array. 
  * Lol 
  */
 
-let arr = [];
 let pricephone = [];
 let keywords = [];
 
@@ -14,40 +13,34 @@ let socialMediaTarget = [];
 let smChannels = [];
 let gglAdds = [];
 
-let promotedGeneral = false;
-let promotedSocialMedia = false;
-let promotedGoogleAdds = false; 
+let promotedGeneral = 0;
+let promotedSocialMedia = 0;
+let promotedGoogleAdds = 0; 
+
+let whichphone;
+let budget;
+
 
 function getDataFromForm() {
 
-    //get the phones checked and store into array. 
-    if(document.getElementById("nothing").checked) {
-        alert("You Must select all the social media channels before continuing.");
-    }
+    //this gets the value for the phone
+    whichphone = $("input[name='phone']:checked").val();
+
+    budget = $("#budgetphone").val();
     
     $("#ggAdds:checked").each(function(){
         gglAdds.push($(this).val());
-        promotedGoogleAdds = true;
+        promotedGoogleAdds = 1;
     });
 
     $("#smTargetID:checked").each(function(){
         socialMediaTarget.push($(this).val());
-        promotedGeneral = true;
+        promotedGeneral = 1;
     });
 
     $("#smChannel:checked").each(function(){
         smChannels.push($(this).val());
-        promotedSocialMedia = true;
-    });
-
-    //phone checked and stores in the array.
-    $("#whichphone:checked").each(function(){
-        arr.push($(this).val());
-    });
-
-    //prices are stored in a array
-    $("#phone1usd").each(function(){
-        pricephone.push($(this).val());
+        promotedSocialMedia = 1;
     });
     
     //this gets the all keywords which are selected and stores them in an array. 
@@ -55,8 +48,8 @@ function getDataFromForm() {
         keywords.push($(this).val());
     });
 
-    console.log("Which Phone ID: " + arr);
-    console.log("Price of the phone: " + pricephone);
+    console.log("ID: " + whichphone);
+    console.log("Budget: " + budget);
     console.log("SM Target: " + socialMediaTarget);
     console.log("SM Channels: " + smChannels);
     console.log("Google Adds: " + gglAdds);
@@ -65,58 +58,55 @@ function getDataFromForm() {
 
 
 function getDataFromApi() {
-    fetch('http://localhost:5000/api/sales/phoneContract=1')
+    fetch('http://localhost:5000/api/sales/phoneContract=' + whichphone)
     .then(function(res){
         return res.json();
     })
     .then(function(data){
-        console.log(data);
-        data.id = arr;
-        data.budget = pricephone;
-        data.promoted = promotedGeneral;
-        data.gglAds.searchTargetKeywords = keywords;
-        data.gglAds.displayTargetKeywords = keywords;
-        data.gglAds.promoted = promotedGoogleAdds;
-        data.gglAds.budget = pricephone;
-        data.smChannels.fbPage = keywords;
-        data.smChannels.ytPage = keywords;
-        data.smChannels.instaPage = keywords;
-        data.smChannels.fbContent = keywords;
-        data.smChannels.ytContent = keywords;
-        data.smChannels.instaContent = keywords;
-        data.smChannels.promoted = promotedSocialMedia;
-        data.smChannels.budget = pricephone;
-        return data;
+        postData(data);
     });
 } 
 
-function postData() {
-
-    let dataPost = getDataFromApi();
-
+function postData(data) {
+    data.id = whichphone;
+    data.sales = data.sales;
+    data.budget = budget;
+    data.promoted = promotedGeneral;
+    data.gglAds.searchTargetKeywords = keywords;
+    data.gglAds.displayTargetKeywords = keywords;
+    data.gglAds.promoted = promotedGoogleAdds;
+    data.gglAds.budget = budget;
+    data.smChannels.fbPage = keywords;
+    data.smChannels.ytPage = keywords;
+    data.smChannels.instaPage = keywords;
+    data.smChannels.fbContent = keywords;
+    data.smChannels.ytContent = keywords;
+    data.smChannels.instaContent = keywords;
+    data.smChannels.promoted = promotedSocialMedia;
+    data.smChannels.budget = budget;
+    ajaxString = JSON.stringify(data);
+    console.log(ajaxString);
 $.ajax({
     type: "POST",
     url: 'http://localhost:5000/api/sales',
     dataType:'json',
-    data: JSON.stringify({dataPost}),
+    data: ajaxString,
     contentType: 'application/json',
     success: function(){
         alert("fuck yea");
     },
   });
 
-   // fetch('http://localhost:5000/api/sales',{
-   //     method:'POST',
-   //     headers: {
-   //         'Accept':'application/json',
-   //         'Content-Type':'application/json'
-   //     },
-   //     body: JSON.stringify(dataPost)
-   // })
-   // .then((res) => res.json())
-   // .then((dataPost) => {
-   //      console.log("TO TREBA GLEDATI:" + dataPost);
-   // })
+//    fetch('http://localhost:5000/api/sales',{
+//        method:'POST',
+//        headers: {
+//            'Content-Type':'application/json'
+//        },
+//        body: JSON.stringify(data)
+//    })
+//    .then((data) => {
+//         console.log("TO TREBA GLEDATI:" + data);
+//    })
 }
 
 
