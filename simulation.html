@@ -70,7 +70,7 @@
 </div>
 
 <!-- Page Content -->
-<div class="container">
+<div class="container" id="container">
     <div class="row">
         <div class="starter-template">
             <!-- MAIN CENTER -->
@@ -225,24 +225,20 @@
               
                 <div class="row">
                   <div class="col">
-                    <button class="btn btn-primary" type="submit" id="submit" onclick="getDataFromForm()">Submit</button>
-             
+                    <button class="btn btn-primary" type="submit" id="submit">Submit</button>
+                    <button class="btn btn-danger" type="submit" id="lock">Lock the Data</button>
                   </div>
                   
                 </div>
                 <br>
                 <br>
-                
-
-
+              
               </main>
         </div>
     </div>
     <!-- /.row -->
 </div>
 <!-- /.container -->
-
-
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -254,6 +250,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <script src="picker.js"></script>
+<script src="validation.js"></script>
 
 </body>
 </html>

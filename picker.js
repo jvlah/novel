@@ -1,6 +1,7 @@
 //event listener for the get data from the api method. 
 document.getElementById('submit').addEventListener('click',getDataFromApi);
 
+
 /**
  * Gets the data from the form and stores it in an array. 
  * Lol 
@@ -19,7 +20,6 @@ let promotedGoogleAdds = 0;
 
 let whichphone;
 let budget;
-
 
 function getDataFromForm() {
 
@@ -47,14 +47,8 @@ function getDataFromForm() {
     $("#keyword:checked").each(function(){
         keywords.push($(this).val());
     });
-
-    console.log("ID: " + whichphone);
-    console.log("Budget: " + budget);
-    console.log("SM Target: " + socialMediaTarget);
-    console.log("SM Channels: " + smChannels);
-    console.log("Google Adds: " + gglAdds);
-    console.log("Keywords: " + keywords);
 }
+
 
 
 function getDataFromApi() {
@@ -96,61 +90,8 @@ $.ajax({
         alert("fuck yea");
     },
   });
-
-//    fetch('http://localhost:5000/api/sales',{
-//        method:'POST',
-//        headers: {
-//            'Content-Type':'application/json'
-//        },
-//        body: JSON.stringify(data)
-//    })
-//    .then((data) => {
-//         console.log("TO TREBA GLEDATI:" + data);
-//    })
 }
 
-
-
-
-   //let phoneJson = JSON.stringify(arr);
-    //console.log(phoneJson);
-    //console.log(phoneJson,keywordJson,priceJson,targetJson)
-/* 
-    let phoneFormat = { 
-        "Sales":"0", 
-        "ID":1,
-        "Budget":array1[0],
-        "Promoted":"10", 
-        "gglAds":{
-              "Promoted":"2",
-              "Budget":array1[0],
-              "SeachTargetKeywords":keywords,
-              "DisplayTargetKeywords":keywords
-        },
-        "smChannels":{
-            "Promoted":"1",
-            "Budget":array1[0],
-            "FBPage":keywords,
-            "YTPage":keywords,
-            "InstaPage":keywords,
-            "FBContent":keywords,
-            "YTContent":keywords,
-            "InstaContent":keywords
-        }
-      }
-
-      console.log(phoneFormat);
-
-      $.ajax({
-        type: 'GET',
-        url: 'https://localhost:5000/api/sales/phoneContract=1',
-        contentType: "application/json",
-        data: phoneFormat,
-        success: function(msg){
-            alert('wow' + msg);
-        }
-    });
- */
 
 
 
